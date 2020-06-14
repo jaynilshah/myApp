@@ -1,0 +1,16 @@
+<div class="containter-fluid">
+    <h1>Login Doctor</h1>
+    <form #doctorlogin = "ngForm" (ngSubmit) = "onSubmit(doctorlogin.value)">  
+        <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

@@ -7,21 +7,42 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
-
+import { UserLoginComponent } from './user-login/user-login.component';
+import { DoctorLoginComponent } from './doctor-login/doctor-login.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { JwtModule } from '@auth0/angular-jwt';
+import { DoctorDefComponent } from './doctor-def/doctor-def.component';
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
     DoctorFormComponent,
-    DashboardComponentComponent
+    DashboardComponentComponent,
+    UserLoginComponent,
+    DoctorLoginComponent,
+    DoctorDefComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:3000','localhost:3000/'],
+        blacklistedRoutes: ['localhost:4000/doctors']
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
