@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 import {HttpClientModule} from '@angular/common/http';
+import { DashboardComponentComponent } from './dashboard-component/dashboard-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    DoctorFormComponent
+    DoctorFormComponent,
+    DashboardComponentComponent
   ],
   imports: [
     BrowserModule,
