@@ -1,1 +1,35 @@
-<p>dashboard-component works!</p>
+<div class="table-responsive">
+  <table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">State/UT</th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Active</th>
+      <th scope="col">Recovered</th>
+      <th scope="col">Deceased</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let state of state_data">
+      <th scope="row">{{state.id}}</th>
+      <td>{{state.stateName}}</td>
+      <td>{{state.active + state.recovered + state.deceased}}</td>
+      <td>{{state.active}}</td>
+      <td>{{state.recovered}}</td>
+      <td>{{state.deceased}}</td>
+    </tr>
+    <tr>
+      <th scope="row">1000</th>
+      <td>Total</td>
+      <td>1000</td>
+      <td>263</td>
+      <td>608</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      
+    </tr>
+  </tbody>
+</table>
+</div>
