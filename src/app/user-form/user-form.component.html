@@ -1,0 +1,21 @@
+<form>  
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" id="password" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="password">State</label>
+        <select name="states" id="" class="custom-select">
+            <option>Hello</option>
+            <option *ngFor="let s of states" ng-value="s.id">{{s.value}}</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
