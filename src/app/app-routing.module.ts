@@ -9,6 +9,7 @@ import { UserDefComponent } from './user-def/user-def.component';
 import { DoctorLoginComponent } from './doctor-login/doctor-login.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AuthGuard } from './auth.guard';
+import { PatientListComponent } from './patient-list/patient-list.component' ;
 
 const routes: Routes = [
     {
@@ -19,6 +20,11 @@ const routes: Routes = [
       path:'doctor-def',
       component : DoctorDefComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path:'patient-list',
+      component : PatientListComponent,
+      // canActivate: [AuthGuard]
     },
     {
       path:'user-def',
