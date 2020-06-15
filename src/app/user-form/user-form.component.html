@@ -1,22 +1,32 @@
 <h1>Register User </h1>
-<form>  
+<form> 
     <div class="form-group">
-    <label for="email">Email</label>
-    <input id="email" type="email" class="form-control">
+        <label for="Name">Name</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="name">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" class="form-control" [(ngModel)]="email">
     </div>
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" id="password" class="form-control">
+        <input type="text" id="password" class="form-control" [(ngModel)]="password">
     </div>
 
     <div class="form-group">
         <label for="password">State</label>
-        <select name="states" id="" class="custom-select">
-            <option>Hello</option>
-            <option *ngFor="let s of states" ng-value="s.id">{{s.value}}</option>
+        <select name="states" id="" class="custom-select" [(ngModel)]="states" >
+            <option ng-value="Select">Select</option>
+            <option *ngFor="let s of states_list" ng-value="s.id">{{s.value}}</option>
         </select>
     </div>
+
+    <div class="form-group">
+        <label for="symptoms">Symptoms</label>
+        <textarea id="symptoms" type="textarea" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..."></textarea>
+    </div> 
 
     <button class="btn btn-primary">Submit</button>
 </form>
