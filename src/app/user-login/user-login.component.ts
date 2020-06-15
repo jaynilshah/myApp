@@ -21,7 +21,7 @@ export class UserLoginComponent implements OnInit {
     this.auth.loginUser(this.email, this.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['doctor-def']),
+        result => this.router.navigate(['user-def']),
         err => this.error = 'Could not authenticate'
       );
   }

@@ -5,6 +5,7 @@ import { DashboardComponentComponent } from './dashboard-component/dashboard-com
 import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { DoctorDefComponent } from './doctor-def/doctor-def.component';
+import { UserDefComponent } from './user-def/user-def.component';
 import { DoctorLoginComponent } from './doctor-login/doctor-login.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { AuthGuard } from './auth.guard';
@@ -17,6 +18,11 @@ const routes: Routes = [
     {
       path:'doctor-def',
       component : DoctorDefComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path:'user-def',
+      component : UserDefComponent,
       canActivate: [AuthGuard]
     },
     {

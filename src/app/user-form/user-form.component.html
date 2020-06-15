@@ -1,5 +1,5 @@
 <h1>Register User </h1>
-<form> 
+<form #userPost = "ngForm" (ngSubmit) = "onSubmit(userPost.value)"> 
     <div class="form-group">
         <label for="Name">Name</label>
         <input id="name" type="text" class="form-control" [(ngModel)]="name" name="name">
@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="password">State</label>
-        <select name="states" id="" class="custom-select" [(ngModel)]="states" >
+        <select name="state" id="" class="custom-select" [(ngModel)]="state" >
             <option ng-value="Select">Select</option>
             <option *ngFor="let s of states_list" ng-value="s.id">{{s.value}}</option>
         </select>

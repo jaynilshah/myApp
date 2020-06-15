@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DoctorDefComponent } from './doctor-def/doctor-def.component';
+import { UserDefComponent } from './user-def/user-def.component';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -24,7 +25,8 @@ export function tokenGetter() {
     DashboardComponentComponent,
     UserLoginComponent,
     DoctorLoginComponent,
-    DoctorDefComponent
+    DoctorDefComponent,
+    UserDefComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent  {
+export class UserFormComponent implements OnInit {
+
+
+  constructor(private http : HttpClient) { }
+
+  ngOnInit(): void {
+  }
 
   public name: string ;
   public email: string ;
   public password: string ;
-  public states: string ;
+  public state: string ;
   public symptoms: string ;
   
   states_list = [
@@ -53,4 +60,10 @@ export class UserFormComponent  {
     { id:'West Bengal', value : 'West Bengal' }
   ];
 
+  onSubmit(data){
+    this.http.post('http://localhost:3000/users',data)
+    .subscribe((result)=>{
+      console.log(result);
+    })
+  }
 }
