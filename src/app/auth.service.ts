@@ -36,7 +36,7 @@ export class AuthService {
   logoutDoctor() {
     localStorage.removeItem('access_token');
   }
-  public get getname(): string {
+  public get getName(): string {
     return (localStorage.getItem('name'));
   }
 

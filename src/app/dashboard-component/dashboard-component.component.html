@@ -3,7 +3,7 @@
     <div class="card text-center">
       <div class="card-body" style="color: red; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         <h6 class="card-title"><b>Confirmed</b></h6>
-        <h4 class="card-text">1237</h4>
+        <h4 class="card-text">{{total_stats.active + total_stats.recovered + total_stats.deceased}}</h4>
       </div>
     </div>
   </div>
@@ -11,7 +11,7 @@
     <div class="card text-center">
       <div class="card-body" style="color: #007bff ; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         <h6 class="card-title"><b>Active</b></h6>
-        <h4 class="card-text">1237</h4>
+        <h4 class="card-text">{{total_stats.active}}</h4>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="card text-center">
       <div class="card-body" style="color:green; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         <h6 class="card-title"><b>Recovered</b></h6>
-        <h4 class="card-text">1237</h4>
+        <h4 class="card-text">{{total_stats.recovered}}</h4>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
     <div class="card text-center">
       <div class="card-body" style="color: gray; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         <h6 class="card-title"><b>Deceased</b></h6>
-        <h4 class="card-text">1237</h4>
+        <h4 class="card-text">{{total_stats.deceased}}</h4>
       </div>
     </div>
   </div>
