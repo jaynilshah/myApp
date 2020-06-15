@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { patientDetail } from '../patient_class' ;
 
 @Component({
   selector: 'patient-list',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class PatientListComponent implements OnInit {
 
   constructor() { }
-
+  //make list of patient like mock state here
+  patients_list: patientDetail[] = [
+    {name:"Jay" , email:"jay@gmail.com" , state:"Gujarat" , symptoms:"Fever" , active:true , deceased:false , recovered:false}
+  ]
   ngOnInit(): void {
   }
 

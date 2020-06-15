@@ -1,1 +1,5 @@
-<user-form></user-form>
+<h2>Patient Lists</h2>
+<patient-tile
+    *ngFor="let patient of patients_list"
+    [patient_detail]="patient">
+</patient-tile>
