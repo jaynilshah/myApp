@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
+import { patientDetail } from '../patient_class';
 
 @Component({
   selector: 'patient-tile',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class PatientTileComponent implements OnInit {
 
   constructor() { }
+  
+  @Input('patient_detail') patient_detail: patientDetail ;
 
   ngOnInit(): void {
   }
