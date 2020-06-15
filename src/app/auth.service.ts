@@ -8,17 +8,36 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   loginDoctor(email: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>('http://localhost:3000/doctorsLogin', {email: email, password: password})
+    return this.http.post<{token: string, name: string}>('http://localhost:3000/doctorsLogin', {email: email, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
+          localStorage.setItem('name', result.name);
           return true;
         })
       );
   }
 
+  loginUser(email: string, password: string): Observable<boolean> {
+    return this.http.post<{token: string, name: string}>('http://localhost:3000/usersLogin', {email: email, password: password})
+      .pipe(
+        map(result => {
+          localStorage.setItem('access_token', result.token);
+          localStorage.setItem('name', result.name);
+          return true;
+        })
+      );
+  }
+
+  logout() {
+    localStorage.removeItem('access_token');
+  }
+
   logoutDoctor() {
     localStorage.removeItem('access_token');
+  }
+  public get getname(): string {
+    return (localStorage.getItem('name'));
   }
 
   public get loggedIn(): boolean {
