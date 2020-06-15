@@ -13,6 +13,7 @@ export class AuthService {
         map(result => {
           localStorage.setItem('access_token', result.token);
           localStorage.setItem('name', result.name);
+          localStorage.setItem('doc', "true");
           return true;
         })
       );
@@ -24,6 +25,7 @@ export class AuthService {
         map(result => {
           localStorage.setItem('access_token', result.token);
           localStorage.setItem('name', result.name);
+          localStorage.setItem('doc', "false");
           return true;
         })
       );
@@ -44,5 +46,8 @@ export class AuthService {
 
   public get loggedIn(): boolean {
     return (localStorage.getItem('access_token') !== null);
+  }
+  public get isDoctor(): boolean {
+    return (localStorage.getItem('doc') == "true");
   }
 }

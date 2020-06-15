@@ -3,12 +3,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" *ngIf="auth.loggedIn" routerLink="">{{auth.getName}}</a>
+        <a class="nav-item nav-link" *ngIf="auth.loggedIn  && auth.isDoctor" routerLink="doctor-def">{{auth.getName}}</a>
+        <a class="nav-item nav-link" *ngIf="auth.loggedIn  && !auth.isDoctor" routerLink="user-def">{{auth.getName}}</a>
         <a class="nav-item nav-link" routerLink="">DashBoard</a>
         <a class="nav-item nav-link" *ngIf="!auth.loggedIn"   routerLink="doctor-form">Register Doctor</a>
         <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-form">Register User</a>
         <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="doctor-login">Login Doctor</a>
         <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-login">Login User</a>
+        <a class="nav-item nav-link" *ngIf="auth.loggedIn && auth.isDoctor"  routerLink="patient-list">Patient List</a>
         <a class="nav-item nav-link float-right" (click)="logout()" *ngIf="auth.loggedIn"  routerLink="doctor-form">Logout</a>
       </div>
     </div>
