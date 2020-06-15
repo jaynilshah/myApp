@@ -2,17 +2,17 @@
 <form> 
     <div class="form-group">
         <label for="Name">Name</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="name">
+        <input id="name" type="text" class="form-control" [(ngModel)]="name" name="name">
     </div>
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" [(ngModel)]="email">
+        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
     </div>
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" id="password" class="form-control" [(ngModel)]="password">
+        <input type="text" id="password" class="form-control" name="password" [(ngModel)]="password">
     </div>
 
     <div class="form-group">
@@ -25,7 +25,7 @@
 
     <div class="form-group">
         <label for="symptoms">Symptoms</label>
-        <textarea id="symptoms" type="textarea" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..."></textarea>
+        <textarea id="symptoms" type="textarea" name="symptoms" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..."></textarea>
     </div> 
 
     <button class="btn btn-primary">Submit</button>
