@@ -11,6 +11,13 @@ export class DashboardComponentComponent implements OnInit {
 
   
   state_data= STATES_DATA ;
+  total_stats: stateDashboard = {
+    id: 0 ,
+    stateName: "total" ,
+    active: 1234 ,
+    deceased : 12234 ,
+    recovered : 1234 
+  };
   constructor() { }
 
   ngOnInit(): void {
