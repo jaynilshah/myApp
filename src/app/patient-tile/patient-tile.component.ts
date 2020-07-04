@@ -1,5 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { patientDetail } from '../patient_class';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'patient-tile',
@@ -8,7 +9,9 @@ import { patientDetail } from '../patient_class';
 })
 export class PatientTileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem("access_token");
+   }
   
   @Input('patient_detail') patient_detail: patientDetail ;
 
@@ -27,10 +30,17 @@ export class PatientTileComponent implements OnInit {
     this.email = this.patient_detail.email ;
     this.state = this.patient_detail.state ;
     this.symptoms = this.patient_detail.symptoms ;
+    this.active = this.patient_detail.active;
+    this.recovered = this.patient_detail.recovered;
+    this.deceased = this.patient_detail.deceased;
   }
 
   onUpdate(data){
-    console.log(data);
+    const headers = { 'x-auth': this.token ,}
+    var state = { 'active' : this.active , 'recovered': this.recovered , 'deceased' : this.deceased};
+    this.http.post<any>('http://localhost:3000/updatePatient',{'email' : this.email , state}, { headers }).subscribe(data => {
+        console.log(data);
+    })
   }
 
 }
