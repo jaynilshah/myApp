@@ -18,6 +18,10 @@ export class PatientListComponent implements OnInit {
   // patients_list: patientDetail[] = [
   //   {name:"Jay" , email:"jay@gmail.com" , state:"Gujarat" , symptoms:"Fever" , active:true , deceased:false , recovered:false}
   // ]
+  // patients_list: patientDetail[] = [
+  //   {name:"Jay" , email:"jay@gmail.com" , state:"Gujarat" , symptoms:"Fever" , active:true , deceased:false , recovered:false},
+  //   {name:"Suy" , email:"suy@gmail.com" , state:"Gujarat" , symptoms:"Fever, Cough" , active:true , deceased:false , recovered:false}
+  // ]
   ngOnInit(): void {
     const headers = { 'x-auth': this.token ,}
     this.http.get<patientDetail[]>('http://localhost:3000/patientList', { headers }).subscribe(data => {

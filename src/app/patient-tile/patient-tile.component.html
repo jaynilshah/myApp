@@ -1,19 +1,34 @@
-<div class="card">
+<div class="card mb-3">
     <div class="card-body">
         <form #userPost = "ngForm" (ngSubmit) = "onUpdate(userPost.value)">
             <div class="form-group">
-                Name  : <input id="name" type="text" class="form-control" [(ngModel)]="name" name="name" readonly>
-                Email :<input id="email" type="email" class="form-control" name="email" [(ngModel)]="email" readonly>
-                <input type="text" id="password" class="form-control" name="password" [(ngModel)]="password" readonly hidden>
-                State :<input type="text" id="state" class="form-control" name="state" [(ngModel)]="state" readonly>
-                Symptoms :<textarea id="symptoms" type="textarea" name="symptoms" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..." readonly></textarea>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Name  : {{ name }}
+                    </div>
+                    <div class="col-sm-4">
+                        Email : {{ email }}
+                    </div>
+                    <div class="col-sm-4">
+                        State : {{ state }}
+                    </div>
+                </div>
+                 <br>
+                Symptoms : {{ symptoms }} <br>
             </div>
-            <div class="form-group">
-                Active    : <input id="active" type="checkbox" name="active" class="form-control" [(ngModel)]="active">
-                Recovered : <input id="recovered" type="checkbox" name="recovered" class="form-control" [(ngModel)]="recovered">
-                Deceased  : <input id="deceased" type="checkbox" name="deceased" class="form-control" [(ngModel)]="deceased">
+            <div class="form-check form-check-inline">
+                <input id="active" type="checkbox" name="active" class="form-check-input" [(ngModel)]="active">
+                <label class="form-check-label" for="active">Active</label>
             </div>
-            <button class="btn btn-primary">Update</button>
+            <div class="form-check form-check-inline">
+                <input id="recovered" type="checkbox" name="recovered" class="form-check-input" [(ngModel)]="recovered">
+                <label class="form-check-label" for="recovered">Recovered</label>
+            </div>
+            <div class="form-check form-check-inline">    
+                <input id="deceased" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
+                <label class="form-check-label" for="deceased">Deceased</label>
+            </div>
+            <button class="btn btn-primary float-right" >Update</button>
         </form>
     </div>
 </div>

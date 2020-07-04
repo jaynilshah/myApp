@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-form',
@@ -9,7 +10,7 @@ import { HttpClient} from '@angular/common/http';
 export class UserFormComponent implements OnInit {
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +20,7 @@ export class UserFormComponent implements OnInit {
   public password: string ;
   public state: string ;
   public symptoms: string ;
+  public error: string ;
   
   states_list = [
     { id:'Andaman and Nicobar' , value: 'Andaman and Nicobar'},
@@ -62,8 +64,9 @@ export class UserFormComponent implements OnInit {
 
   onSubmit(data){
     this.http.post('http://localhost:3000/users',data)
-    .subscribe((result)=>{
-      console.log(result);
-    })
+    .subscribe(
+      result => this.router.navigate(['user-login']),
+      err => this.error = 'Could not register'
+    )
   }
 }
