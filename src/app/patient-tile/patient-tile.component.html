@@ -28,7 +28,7 @@
                 <input id="deceased" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
                 <label class="form-check-label">Deceased</label>
             </div>
-            <p>{{error}}</p>
+            <p *ngIf="error">{{error}}</p>
             <button class="btn btn-primary float-right" >Update</button>
         </form>
     </div>
