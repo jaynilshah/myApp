@@ -18,16 +18,17 @@
             </div>
             <div class="form-check form-check-inline">
                 <input id="active" type="checkbox" name="active" class="form-check-input" [(ngModel)]="active">
-                <label class="form-check-label" for="active">Active</label>
+                <label class="form-check-label">Active</label>
             </div>
             <div class="form-check form-check-inline">
                 <input id="recovered" type="checkbox" name="recovered" class="form-check-input" [(ngModel)]="recovered">
-                <label class="form-check-label" for="recovered">Recovered</label>
+                <label class="form-check-label">Recovered</label>
             </div>
             <div class="form-check form-check-inline">    
                 <input id="deceased" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
-                <label class="form-check-label" for="deceased">Deceased</label>
+                <label class="form-check-label">Deceased</label>
             </div>
+            <p>{{error}}</p>
             <button class="btn btn-primary float-right" >Update</button>
         </form>
     </div>

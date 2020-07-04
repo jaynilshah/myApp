@@ -24,6 +24,7 @@ export class PatientTileComponent implements OnInit {
   public deceased: boolean;
   public token: string;
   public password: string;
+  public error: string;
 
   ngOnInit(): void {
     this.name = this.patient_detail.name ;
@@ -33,14 +34,21 @@ export class PatientTileComponent implements OnInit {
     this.active = this.patient_detail.active;
     this.recovered = this.patient_detail.recovered;
     this.deceased = this.patient_detail.deceased;
+    this.error = null;
   }
 
   onUpdate(data){
     const headers = { 'x-auth': this.token ,}
     var state = { 'active' : this.active , 'recovered': this.recovered , 'deceased' : this.deceased};
-    this.http.post<any>('http://localhost:3000/updatePatient',{'email' : this.email , state}, { headers }).subscribe(data => {
-        
-    })
+    if((this.active && this.recovered) || (this.deceased && this.recovered) || (this.active && this.deceased)){
+      this.error = "Cannot set two states to be true at the same time";
+    }
+    else{
+      this.error = null;
+      this.http.post<any>('http://localhost:3000/updatePatient',{'email' : this.email , state}, { headers }).subscribe(data => {
+
+      })
+    }
   }
 
 }
