@@ -39,7 +39,7 @@ export class PatientTileComponent implements OnInit {
     const headers = { 'x-auth': this.token ,}
     var state = { 'active' : this.active , 'recovered': this.recovered , 'deceased' : this.deceased};
     this.http.post<any>('http://localhost:3000/updatePatient',{'email' : this.email , state}, { headers }).subscribe(data => {
-        console.log(data);
+        
     })
   }
 

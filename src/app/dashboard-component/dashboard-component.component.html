@@ -47,12 +47,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let state of state_data">
-      <th scope="row">{{state.id}}</th>
-      <td>{{state.stateName}}</td>
-      <td>{{state.active + state.recovered + state.deceased}}</td>
-      <td>{{state.active}}</td>
-      <td>{{state.recovered}}</td>
-      <td>{{state.deceased}}</td>
+      <th scope="row">{{state[1].id}}</th>
+      <td>{{state[0]}}</td>
+      <td>{{state[1].active + state[1].recovered + state[1].deceased}}</td>
+      <td>{{state[1].active}}</td>
+      <td>{{state[1].recovered}}</td>
+      <td>{{state[1].deceased}}</td>
     </tr>
     <tr>
       
