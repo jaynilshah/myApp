@@ -1,16 +1,16 @@
-<div class="card mb-3">
-    <div class="card-body">
+<div [ngClass]="selectClasses()" >
+    <div class="card-body pt-0">
         <form #userPost = "ngForm" (ngSubmit) = "onUpdate(userPost.value)">
             <div class="form-group">
-                <div class="row">
+                <div class="row card-header ">
                     <div class="col-sm-4">
-                        Name  : {{ name }}
+                        Name  : <b>{{ name }}</b>
                     </div>
                     <div class="col-sm-4">
-                        Email : {{ email }}
+                        Email : <b>{{ email }}</b>
                     </div>
                     <div class="col-sm-4">
-                        State : {{ state }}
+                        State : <b>{{ state }}</b>
                     </div>
                 </div>
                 <input type="text" id="password" class="form-control" name="password" [(ngModel)]="password" readonly hidden>
@@ -19,16 +19,18 @@
             </div>
             <div class="form-check form-check-inline">
                 <input id="active" type="checkbox" name="active" class="form-check-input" [(ngModel)]="active">
-                <label class="form-check-label" >Active</label>
+                <label class="form-check-label">Active</label>
             </div>
             <div class="form-check form-check-inline">
                 <input id="recovered" type="checkbox" name="recovered" class="form-check-input" [(ngModel)]="recovered">
-                <label class="form-check-label" >Recovered</label>
+                <label class="form-check-label">Recovered</label>
             </div>
             <div class="form-check form-check-inline">    
                 <input id="deceased" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
-                <label class="form-check-label" >Deceased</label>
+                <label class="form-check-label">Deceased</label>
             </div>
+            <div *ngIf="error" class="alert alert-danger text-center" role="alert">{{ error }}</div>
+            <div *ngIf="success" class="alert alert-success text-center" role="alert">{{ success }}</div>
             <button class="btn btn-primary float-right" >Update</button>
         </form>
     </div>

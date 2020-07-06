@@ -7,14 +7,27 @@ import { HttpClient} from '@angular/common/http';
 })
 export class DoctorFormComponent implements OnInit {
 
+  public error:string ;
+  
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {
+    this.error = null ;
   }
   onSubmit(data){
-    this.http.post('http://localhost:3000/doctors',data)
-    .subscribe((result)=>{
-      console.log(result);
-    })
+    if( data.password != data.cpassword )
+    {
+      this.error = "Password and Confirm Password don't match!!!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else{
+      this.http.post('http://localhost:3000/doctors',data)
+      .subscribe((result)=>{
+        console.log(result);
+      })
+    }
+      
   }
 }

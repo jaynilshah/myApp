@@ -1,62 +1,62 @@
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card text-center">
-      <div class="card-body" style="color: red; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-        <h6 class="card-title"><b>Confirmed</b></h6>
-        <h4 class="card-text">{{total_stats.active + total_stats.recovered + total_stats.deceased}}</h4>
+<div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-body" style="color: red; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          <h6 class="card-title"><b>Confirmed</b></h6>
+          <h4 class="card-text">{{total_stats.active + total_stats.recovered + total_stats.deceased}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-body" style="color: #007bff ; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          <h6 class="card-title"><b>Active</b></h6>
+          <h4 class="card-text">{{total_stats.active}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-body" style="color:green; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          <h6 class="card-title"><b>Recovered</b></h6>
+          <h4 class="card-text">{{total_stats.recovered}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card text-center">
+        <div class="card-body" style="color: gray; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          <h6 class="card-title"><b>Deceased</b></h6>
+          <h4 class="card-text">{{total_stats.deceased}}</h4>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div class="card text-center">
-      <div class="card-body" style="color: #007bff ; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-        <h6 class="card-title"><b>Active</b></h6>
-        <h4 class="card-text">{{total_stats.active}}</h4>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card text-center">
-      <div class="card-body" style="color:green; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-        <h6 class="card-title"><b>Recovered</b></h6>
-        <h4 class="card-text">{{total_stats.recovered}}</h4>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card text-center">
-      <div class="card-body" style="color: gray; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-        <h6 class="card-title"><b>Deceased</b></h6>
-        <h4 class="card-text">{{total_stats.deceased}}</h4>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="table-responsive">
-  <table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">State/UT</th>
-      <th scope="col">Confirmed</th>
-      <th scope="col">Active</th>
-      <th scope="col">Recovered</th>
-      <th scope="col">Deceased</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let state of state_data">
-      <th scope="row">{{state[1].id}}</th>
-      <td>{{state[0]}}</td>
-      <td>{{state[1].active + state[1].recovered + state[1].deceased}}</td>
-      <td>{{state[1].active}}</td>
-      <td>{{state[1].recovered}}</td>
-      <td>{{state[1].deceased}}</td>
-    </tr>
-    <tr>
-      
-    </tr>
-  </tbody>
-</table>
+  <div class="table-responsive">
+    <table class="table table-hover table-fixed">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">State/UT</th>
+          <th scope="col">Confirmed</th>
+          <th scope="col">Active</th>
+          <th scope="col">Recovered</th>
+          <th scope="col">Deceased</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of state_data">
+          <th scope="row">{{state[1].id}}</th>
+          <td>{{state[0]}}</td>
+          <td>{{state[1].active + state[1].recovered + state[1].deceased}}</td>
+          <td>{{state[1].active}}</td>
+          <td>{{state[1].recovered}}</td>
+          <td>{{state[1].deceased}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
 </div>
