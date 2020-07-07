@@ -47,8 +47,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let state of state_data">
-          <th scope="row">{{state[1].id}}</th>
+        <tr *ngFor="let state of state_data; let i = index">
+          <th scope="row">{{i}}</th>
           <td>{{state[0]}}</td>
           <td>{{state[1].active + state[1].recovered + state[1].deceased}}</td>
           <td>{{state[1].active}}</td>

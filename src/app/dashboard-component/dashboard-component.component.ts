@@ -53,6 +53,14 @@ export class DashboardComponentComponent implements OnInit {
       else
         this.sortArray[i] = 0 ;
     }
+    this.state_data.sort((a,b)=>{
+      return (this.sortArray[2] * (a[1].active - b[1].active))
+        + (this.sortArray[0] * a[0].localeCompare(b))
+        + (this.sortArray[1] * (a[1].active + a[1].recovered + a[1].deceased - (b[1].active + b[1].recovered + b[1].deceased)))
+        + this.sortArray[3] * (a[1].recovered - b[1].recovered)
+        + this.sortArray[4] * (a[1].deceased - b[1].deceased)
+      ;
+    })
   }
 
 }
