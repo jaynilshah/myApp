@@ -22,7 +22,7 @@ export class DashboardComponentComponent implements OnInit {
     deceased : 0 ,
     recovered : 0 
   };
-  
+  public sortArray : number[] ;
 
   ngOnInit(): void {
     this.http.get<any>('http://localhost:3000/stateList',).subscribe(data => {
@@ -33,10 +33,26 @@ export class DashboardComponentComponent implements OnInit {
         this.total_stats.deceased+= el[1].deceased;
       })
     })
+    this.sortArray = [ 0 , 0 , 0 , 0 , 0 ] ;
   }
 
   logout() {
     this.auth.logout();
     this.router.navigate(['']);
   }
+
+  toggleSortState(val){
+    if( this.sortArray[val] == 0 )
+      this.sortArray[val] = 1 ;
+    else
+      this.sortArray[val] *= -1 ;
+    for( let i = 0 ; i < 5 ; i++ )
+    {
+      if( i == val )
+        continue ;
+      else
+        this.sortArray[i] = 0 ;
+    }
+  }
+
 }
