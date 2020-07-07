@@ -1,7 +1,14 @@
-<div class="col-12 float-center" >
+<label for="sname">Name</label>
+<input id="sname" type="text" name="sname" [(ngModel)] = "sname">
+
+<label for="semail">Email</label>
+<input id="semail" type="email" name="semail" [(ngModel)] = "semail">
+<button class="btn btn-primary btn-block" (click)="onSearch()">Search</button>
+
+
+
+<div class="col-12 float-center">
     <h2>Patient Lists</h2>
-    <patient-tile
-        *ngFor="let patient of patients_list"
-        [patient_detail]="patient" [attr.id]="patient.email">
-    </patient-tile>    
+    <patient-tile *ngFor="let patient of patients_list" [patient_detail]="patient" [attr.id]="patient.email">
+    </patient-tile>
 </div>

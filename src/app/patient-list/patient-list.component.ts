@@ -10,23 +10,46 @@ import { HttpClient } from '@angular/common/http';
 export class PatientListComponent implements OnInit {
 
   private token : string;
+  public sname : string;
+  public semail : string;
+  public sstate : string;
+  public scategory : string; //Set the values as all , active, deveased, recovered
   public patients_list : patientDetail[];
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem("access_token");
    }
-  //make list of patient like mock state here
-  // patients_list: patientDetail[] = [
-  //   {name:"Jay" , email:"jay@gmail.com" , state:"Gujarat" , symptoms:"Fever" , active:true , deceased:false , recovered:false}
-  // ]
-  // patients_list: patientDetail[] = [
-  //   {name:"Jay" , email:"jay@gmail.com" , state:"Gujarat" , symptoms:"Fever" , active:true , deceased:false , recovered:false},
-  //   {name:"Suy" , email:"suy@gmail.com" , state:"Gujarat" , symptoms:"Fever, Cough" , active:true , deceased:false , recovered:false}
-  // ]
   ngOnInit(): void {
     const headers = { 'x-auth': this.token ,}
-    this.http.get<patientDetail[]>('http://localhost:3000/patientList', { headers }).subscribe(data => {
+    this.http.post<patientDetail[]>('http://localhost:3000/patientList',{}  , { headers }).subscribe(data => {
         this.patients_list = data;
         console.log(data);
+    })
+  }
+  onSearch(): void{
+    var search = {};
+    if(this.sname && this.sname!=""){
+      search['name'] = this.sname;
+    }
+    if(this.scategory && this.scategory!="any"){
+      if(this.scategory=="active"){
+        search['active'] = true;
+      }
+      else if(this.scategory == "recovered"){
+        search['recovered'] = true;
+      }
+      else if(this.scategory == "deceased"){
+        search['deceased'] = true;
+      }
+    }
+    if(this.sstate && this.sstate!="any"){
+      search['state'] = this.sstate;
+    }
+    if(this.semail && this.semail!=""){
+      search['email'] = this.semail;
+    }
+    const headers = { 'x-auth': this.token ,}
+    this.http.post<patientDetail[]>('http://localhost:3000/patientList',{search}, { headers }).subscribe(data => {
+        this.patients_list = data;
     })
   }
 
