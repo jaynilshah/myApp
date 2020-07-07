@@ -1,18 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
+  <a class="nav-item nav-link navbar-brand" routerLink="">
+    <img src="../assets/images/covid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Covid-19
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<h1> Covid Panel </h1>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" *ngIf="auth.loggedIn  && auth.isDoctor" routerLink="doctor-def">{{auth.getName}}</a>
-        <a class="nav-item nav-link" *ngIf="auth.loggedIn  && !auth.isDoctor" routerLink="user-def">{{auth.getName}}</a>
-        <a class="nav-item nav-link" routerLink="">DashBoard</a>
-        <a class="nav-item nav-link" *ngIf="!auth.loggedIn"   routerLink="doctor-form">Register Doctor</a>
-        <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-form">Register User</a>
-        <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="doctor-login">Login Doctor</a>
-        <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-login">Login User</a>
-        <a class="nav-item nav-link" *ngIf="auth.loggedIn && auth.isDoctor"  routerLink="patient-list">Patient List</a>
-        <a class="nav-item nav-link float-right" (click)="logout()" *ngIf="auth.loggedIn"  routerLink="doctor-form">Logout</a>
-      </div>
+  <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="">DashBoard</a>
+      <!-- <a class="nav-item nav-link" *ngIf="!auth.loggedIn"   routerLink="doctor-form">Register Doctor</a> -->
+      <!-- <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-form">Register User</a> -->
+      <a class="nav-item nav-link" *ngIf="auth.loggedIn && auth.isDoctor"  routerLink="patient-list">Patient List</a>
     </div>
-  </nav>
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link" *ngIf="auth.loggedIn  && auth.isDoctor" routerLink="doctor-def">
+        <img src="../assets/images/user.png" width="35" height="35" class="d-inline-block align-top">
+        {{auth.getName}}
+      </a>
+      <a class="nav-item nav-link" *ngIf="auth.loggedIn  && !auth.isDoctor" routerLink="user-def">
+        <img src="../assets/images/user.png" width="35" height="35" class="d-inline-block align-top">
+        {{auth.getName}}
+      </a>
+      <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="doctor-login">
+        <button type="button" class="btn btn-primary btn-block">
+          Login Doctor
+        </button>
+      </a>
+      <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-login">
+        <button type="button" class="btn btn-outline-primary btn-block">
+          Login User
+        </button>
+      </a>
+      <a class="nav-item nav-link" (click)="logout()" *ngIf="auth.loggedIn"  routerLink="doctor-form">
+        <button type="button" class="btn btn-outline-primary btn-block ml-2">
+          Logout
+        </button>
+      </a>
+    </div>
+  </div>
+</nav>
 <router-outlet></router-outlet>

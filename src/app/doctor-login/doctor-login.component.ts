@@ -17,13 +17,35 @@ export class DoctorLoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.error=null ;
   }
+
+
   onSubmit(data) {
-    this.auth.loginDoctor(this.email, this.password)
-      .pipe(first())
-      .subscribe(
-        result => this.router.navigate(['doctor-def']),
-        err => this.error = 'Could not authenticate'
-      );
+    if( this.email == null || this.password == null )
+    {
+      this.error = "Invalid Login Credentials!!!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this );
+    }
+    else{
+      this.auth.loginDoctor(this.email, this.password)
+        .pipe(first())
+        .subscribe(
+          result => this.router.navigate(['doctor-def']),
+          error => { 
+            this.error = 'Incorrect username or password!!!'
+            setTimeout( function (abc) {
+              abc.error = null ;
+            } , 3000 , this )
+          }
+        );
+    }
   }
+
+  routeSignUp(){
+    this.router.navigate(['doctor-form'])
+  }
+
 }

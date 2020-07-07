@@ -1,16 +1,27 @@
 <div class="containter-fluid">
-    <h1>Login User</h1>
-    <form #doctorlogin = "ngForm" (ngSubmit) = "onSubmit(doctorlogin.value)">  
-        <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
+    <div class="card mx-auto border-primary" style="width: 30rem; margin-top: 7rem;">
+        <div class="card-header">
+            <h3 class="card-title text-center">User Login</h3>
         </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password">
-        </div>
+        <div class="card-body">
+            <form #doctorlogin = "ngForm" (ngSubmit) = "onSubmit(doctorlogin.value)">  
+                <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
+                </div>
         
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password">
+                </div>
+                
+                <div class="alert alert-danger text-center" *ngIf="error" role="alert">{{ error }}</div>
+
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <!-- Route this button to Register Doctor...verify correct method used or not -->
+                <button type="button" (click)="routeSignUp()" class="btn btn-outline-primary btn-block">Not a member? Sign Up</button>
+            </form>
+        </div>
+    </div>
 </div>
+

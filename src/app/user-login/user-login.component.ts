@@ -13,17 +13,38 @@ export class UserLoginComponent implements OnInit {
   public email: string;
   public password: string;
   public error: string;
+
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.error = null ;
   }
   onSubmit(data) {
-    this.auth.loginUser(this.email, this.password)
+    if( this.email == null || this.password == null )
+    {
+      this.error = "Invalid Login Credentials!!!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this );
+    }
+    else{
+      this.auth.loginUser(this.email, this.password)
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['user-def']),
-        err => this.error = 'Could not authenticate'
+        err => { 
+          this.error = 'Incorrect username or password!!!'
+          setTimeout( function (abc) {
+            abc.error = null ;
+          } , 3000 , this )
+        }
       );
+    }
+    
+  }
+
+  routeSignUp(){
+    this.router.navigate(['user-form'])
   }
 
 }
