@@ -39,11 +39,11 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">State/UT</th>
-          <th scope="col">Confirmed</th>
-          <th scope="col">Active</th>
-          <th scope="col">Recovered</th>
-          <th scope="col">Deceased</th>
+          <th scope="col" (click)="toggleSortState(0);">State/UT</th>
+          <th scope="col" (click)="toggleSortState(1);">Confirmed</th>
+          <th scope="col" (click)="toggleSortState(2);">Active</th>
+          <th scope="col" (click)="toggleSortState(3);">Recovered</th>
+          <th scope="col" (click)="toggleSortState(4);">Deceased</th>
         </tr>
       </thead>
       <tbody>
