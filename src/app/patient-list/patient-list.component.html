@@ -1,9 +1,16 @@
 <label for="sname">Name</label>
-<input id="sname" type="text" name="sname" [(ngModel)] = "sname">
+<input id="sname" type="text" name="sname" [(ngModel)] = "sname" (keyup) = "onSearch()">
 
 <label for="semail">Email</label>
-<input id="semail" type="email" name="semail" [(ngModel)] = "semail">
-<button class="btn btn-primary btn-block" (click)="onSearch()">Search</button>
+<input  id="semail" type="email" name="semail" [(ngModel)] = "semail" (keyup) = "onSearch()">
+<button class="btn btn-primary btn-block" (click)="onReset()">Reset</button>  
+<select [(ngModel)]="scategory" (change)= "onSearch()">
+    <option *ngFor="let c of categories" [ngValue]="c">{{c.value}}</option>
+</select>
+
+<select [(ngModel)]="sstate" (change)= "onSearch()">
+    <option *ngFor="let c of states_list" [ngValue]="c">{{c.value}}</option>
+</select>
 
 
 

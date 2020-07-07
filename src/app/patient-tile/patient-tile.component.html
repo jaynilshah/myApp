@@ -13,20 +13,20 @@
                         State : <b>{{ state }}</b>
                     </div>
                 </div>
-                <input type="text" id="password" class="form-control" name="password" [(ngModel)]="password" readonly hidden>
+                <input type="text" [attr.id]="email + 'password'" class="form-control" name="password" [(ngModel)]="password" readonly hidden>
                 <br>
                 Symptoms : {{ symptoms }} <br>
             </div>
             <div class="form-check form-check-inline">
-                <input id="active" type="checkbox" name="active" class="form-check-input" [(ngModel)]="active">
+                <input [attr.id]="email + 'active'" type="checkbox" name="active" class="form-check-input" [(ngModel)]="active">
                 <label class="form-check-label">Active</label>
             </div>
             <div class="form-check form-check-inline">
-                <input id="recovered" type="checkbox" name="recovered" class="form-check-input" [(ngModel)]="recovered">
+                <input [attr.id]="email + 'recovered'" type="checkbox" name="recovered" class="form-check-input" [(ngModel)]="recovered">
                 <label class="form-check-label">Recovered</label>
             </div>
             <div class="form-check form-check-inline">    
-                <input id="deceased" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
+                <input [attr.id]="email + 'deceased'" type="checkbox" name="deceased" class="form-check-input" [(ngModel)]="deceased">
                 <label class="form-check-label">Deceased</label>
             </div>
             <div *ngIf="error" class="alert alert-danger text-center" role="alert">{{ error }}</div>

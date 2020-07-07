@@ -12,12 +12,61 @@ export class PatientListComponent implements OnInit {
   private token : string;
   public sname : string;
   public semail : string;
-  public sstate : string;
-  public scategory : string; //Set the values as all , active, deveased, recovered
+  public sstate : any;
+  public scategory : any; //Set the values as all , active, deveased, recovered
   public patients_list : patientDetail[];
+  public states_list : any;
+  public categories : any;
+  
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem("access_token");
-   }
+    this.categories = [
+      {id : 1, value : "any"},
+      {id : 2, value : "active"},
+      {id : 3, value : "recovered"},
+      {id : 4, value : "deceased"},
+    ]
+    this.states_list = [
+      { id:'all' , value: 'any'},
+      { id:'Andaman and Nicobar' , value: 'Andaman and Nicobar'},
+      { id:'Andhra Pradesh',    value : 'Andhra Pradesh'    },
+      { id:'Arunachal Pradesh', value : 'Arunachal Pradesh' },
+      { id:'Assam', value : 'Assam' },
+      { id:'Bihar', value : 'Bihar' },
+      { id:'Chandigarh' , value: 'Chandigarh'},
+      { id:'Chhattisgarh', value : 'Chhattisgarh' },
+      { id:'Daman and Diu' , value: 'Daman and Diu'},
+      { id:'Dadar and Nagar Haveli' , value: 'Dadar and Nagar Haveli'},
+      { id:'Delhi' , value: 'Delhi'},
+      { id:'Goa', value : 'Goa' },
+      { id:'Gujarat', value : 'Gujarat' },
+      { id:'Haryana', value : 'Haryana' },
+      { id:'Himachal Pradesh', value : 'Himachal Pradesh' },
+      { id:'Jammu and Kashmir' , value: 'Jammu and Kashmir'},
+      { id:'Jharkhand', value : 'Jharkhand' },
+      { id:'Karnataka', value : 'Karnataka' },
+      { id:'Kerala', value : 'Kerala' },
+      { id:'Ladakh' , value: 'Ladakh'},
+      { id:'Lakshadweep' , value: 'Lakshadweep'},
+      { id:'Madhya Pradesh', value : 'Madhya Pradesh' },
+      { id:'Maharashtra', value : 'Maharashtra' },
+      { id:'Manipur', value : 'Manipur' },
+      { id:'Meghalaya', value : 'Meghalaya' },
+      { id:'Mizoram', value : 'Mizoram' },
+      { id:'Nagaland', value : 'Nagaland' },
+      { id:'Odisha', value : 'Odisha' },
+      { id:'Puducherry' , value: 'Puducherry'},
+      { id:'Punjab', value : 'Punjab' },
+      { id:'Rajasthan', value : 'Rajasthan' },
+      { id:'Sikkim', value : 'Sikkim' },
+      { id:'TamilNadu', value : 'TamilNadu' },
+      { id:'Telangana', value : 'Telangana' },
+      { id:'Tripura', value : 'Tripura' },
+      { id:'Uttar Pradesh', value : 'Uttar Pradesh' },
+      { id:'Uttarakhand', value : 'Uttarakhand' },
+      { id:'West Bengal', value : 'West Bengal' }
+    ];
+  }
   ngOnInit(): void {
     const headers = { 'x-auth': this.token ,}
     this.http.post<patientDetail[]>('http://localhost:3000/patientList',{}  , { headers }).subscribe(data => {
@@ -25,27 +74,34 @@ export class PatientListComponent implements OnInit {
         console.log(data);
     })
   }
-  onSearch(): void{
+  onReset() : void {
+    this.sname = "";
+    this.semail = "";
+    this.sstate = "any";
+    this.scategory = "all";
+    this.onSearch();
+  }
+  public onSearch(): void{
     var search = {};
     if(this.sname && this.sname!=""){
-      search['name'] = this.sname;
+      search['name'] = { $regex: this.sname, $options: "i" };
     }
-    if(this.scategory && this.scategory!="any"){
-      if(this.scategory=="active"){
+    if(this.scategory && this.scategory.value!="any"){
+      if(this.scategory.value=="active"){
         search['active'] = true;
       }
-      else if(this.scategory == "recovered"){
+      else if(this.scategory.value == "recovered"){
         search['recovered'] = true;
       }
-      else if(this.scategory == "deceased"){
+      else if(this.scategory.value == "deceased"){
         search['deceased'] = true;
       }
     }
-    if(this.sstate && this.sstate!="any"){
-      search['state'] = this.sstate;
+    if(this.sstate && this.sstate.value!="any"){
+      search['state'] = this.sstate.value;
     }
     if(this.semail && this.semail!=""){
-      search['email'] = this.semail;
+      search['email'] = { $regex: this.semail, $options: "i" };;
     }
     const headers = { 'x-auth': this.token ,}
     this.http.post<patientDetail[]>('http://localhost:3000/patientList',{search}, { headers }).subscribe(data => {
