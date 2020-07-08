@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { STATES_DATA } from '../mock_state_data' ;
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'dashboard-component',
   templateUrl: './dashboard-component.component.html',
@@ -12,9 +13,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardComponentComponent implements OnInit {
 
-  
+  public options : any ;
   public state_data: any ;
-  constructor(public auth: AuthService, private router: Router, private http: HttpClient) { }
+  constructor(public auth: AuthService, private router: Router, private http: HttpClient) { 
+    
+
+  }
   total_stats: stateDashboard = {
     id: 0 ,
     stateName: "total" ,

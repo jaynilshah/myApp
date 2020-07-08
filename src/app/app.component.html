@@ -1,3 +1,10 @@
+
+<div class="container text-center">
+    <alert></alert>
+</div>
+
+
+
 <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
   <a class="nav-item nav-link navbar-brand" routerLink="">
     <img src="../assets/images/covid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -10,8 +17,6 @@
   <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="">DashBoard</a>
-      <!-- <a class="nav-item nav-link" *ngIf="!auth.loggedIn"   routerLink="doctor-form">Register Doctor</a> -->
-      <!-- <a class="nav-item nav-link" *ngIf="!auth.loggedIn"  routerLink="user-form">Register User</a> -->
       <a class="nav-item nav-link" *ngIf="auth.loggedIn && auth.isDoctor"  routerLink="patient-list">Patient List</a>
     </div>
     <div class="navbar-nav ml-auto">
@@ -41,4 +46,4 @@
     </div>
   </div>
 </nav>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> 

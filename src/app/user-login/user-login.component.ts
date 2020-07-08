@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import  {AlertService} from '../_alert';
 
 @Component({
   selector: 'app-user-login',
@@ -13,8 +14,7 @@ export class UserLoginComponent implements OnInit {
   public email: string;
   public password: string;
   public error: string;
-
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router , private alertService : AlertService) {}
 
   ngOnInit(): void {
     this.error = null ;
@@ -28,6 +28,10 @@ export class UserLoginComponent implements OnInit {
       } , 3000 , this );
     }
     else{
+      this.alertService.success('Succesfully logged in', {
+        autoClose: true,
+        keepAfterRouteChange: true
+      });
       this.auth.loginUser(this.email, this.password)
       .pipe(first())
       .subscribe(

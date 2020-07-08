@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import {AlertService} from '../_alert'
 
 @Component({
   selector: 'doctor-login',
@@ -14,7 +15,7 @@ export class DoctorLoginComponent implements OnInit {
   public password: string;
   public error: string;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router , private alertService : AlertService) { }
 
   ngOnInit(): void {
     this.error=null ;
@@ -30,6 +31,11 @@ export class DoctorLoginComponent implements OnInit {
       } , 3000 , this );
     }
     else{
+      this.alertService.success('Succesfully logged in', {
+        autoClose: true,
+        keepAfterRouteChange: true
+      });
+
       this.auth.loginDoctor(this.email, this.password)
         .pipe(first())
         .subscribe(

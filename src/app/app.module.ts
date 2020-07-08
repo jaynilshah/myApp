@@ -16,6 +16,7 @@ import { DoctorDefComponent } from './doctor-def/doctor-def.component';
 import { UserDefComponent } from './user-def/user-def.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientTileComponent } from './patient-tile/patient-tile.component';
+import { AlertModule } from './_alert';
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -37,6 +38,7 @@ export function tokenGetter() {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    AlertModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
