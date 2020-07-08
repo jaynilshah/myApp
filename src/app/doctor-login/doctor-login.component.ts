@@ -31,15 +31,18 @@ export class DoctorLoginComponent implements OnInit {
       } , 3000 , this );
     }
     else{
-      this.alertService.success('Succesfully logged in', {
-        autoClose: true,
-        keepAfterRouteChange: true
-      });
+      
 
       this.auth.loginDoctor(this.email, this.password)
         .pipe(first())
         .subscribe(
-          result => this.router.navigate(['doctor-def']),
+          result => {
+            this.router.navigate(['doctor-def']),
+            this.alertService.success('Succesfully logged in', {
+              autoClose: true,
+              keepAfterRouteChange: true
+            });
+          },    
           error => { 
             this.error = 'Incorrect username or password!!!'
             setTimeout( function (abc) {

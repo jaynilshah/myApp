@@ -28,15 +28,18 @@ export class UserLoginComponent implements OnInit {
       } , 3000 , this );
     }
     else{
-      this.alertService.success('Succesfully logged in', {
-        autoClose: true,
-        keepAfterRouteChange: true
-      });
+      
       this.auth.loginUser(this.email, this.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['user-def']),
-        err => { 
+        result => {
+          this.router.navigate(['user-def']),
+          this.alertService.success('Succesfully logged in', {
+            autoClose: true,
+            keepAfterRouteChange: true
+          });
+        },
+          err => { 
           this.error = 'Incorrect username or password!!!'
           setTimeout( function (abc) {
             abc.error = null ;
