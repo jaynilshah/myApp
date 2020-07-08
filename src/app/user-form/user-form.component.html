@@ -1,32 +1,50 @@
-<h1>Register User </h1>
-<form #userPost = "ngForm" (ngSubmit) = "onSubmit(userPost.value)"> 
-    <div class="form-group">
-        <label for="Name">Name</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="name" name="name">
+<div class="continer-fluid">
+    <div class="card mx-auto border-primary" style="width: 50rem; margin-top: 1rem;">
+        <div class="card-header">
+            <h3 class="card-title text-center">Register as User</h3>
+        </div>
+        <div class="card-body">
+            <form #userPost = "ngForm" (ngSubmit) = "onSubmit(userPost.value)"> 
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input id="name" type="text" class="form-control" [(ngModel)]="name" name="name">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">State</label>
+                        <select name="state" id="" class="custom-select" [(ngModel)]="state" >
+                            <option ng-value="Select">Select</option>
+                            <option *ngFor="let s of states_list" ng-value="s.id">{{s.value}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+            
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" id="cpassword" class="form-control" name="cpassword" [(ngModel)]="cpassword">
+                    </div>
+                </div>                
+            
+                <div class="form-group">
+                    <label for="symptoms">Symptoms</label>
+                    <textarea id="symptoms" type="textarea" name="symptoms" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..."></textarea>
+                </div> 
+
+                <div *ngIf="error" class="alert alert-danger text-center" role="alert">{{ error }}</div>
+            
+                <button class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email">
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="text" id="password" class="form-control" name="password" [(ngModel)]="password">
-    </div>
-
-    <div class="form-group">
-        <label for="password">State</label>
-        <select name="state" id="" class="custom-select" [(ngModel)]="state" >
-            <option ng-value="Select">Select</option>
-            <option *ngFor="let s of states_list" ng-value="s.id">{{s.value}}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="symptoms">Symptoms</label>
-        <textarea id="symptoms" type="textarea" name="symptoms" class="form-control" [(ngModel)]="symptoms" placeholder="Write symptoms here..."></textarea>
-    </div> 
-
-    <button class="btn btn-primary">Submit</button>
-</form>
+</div>

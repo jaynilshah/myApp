@@ -1,21 +1,37 @@
 <div class="containter-fluid">
-    <h1>Doctor details</h1>
-    <form #doctorPost = "ngForm" (ngSubmit) = "onUpdate(doctorPost.value)">  
+    <div class="card mx-auto border-info" style="width: 40rem; margin-top: 5rem;">
+        <div class="card-header">
+            <h3 class="card-title">
+                Account Details
+                <button class="btn btn-outline-info float-right" style="width: 7rem;" (click)="toggleEdit()">{{ info }}</button>
+            </h3>
+        </div>
+        <div class="card-body">
+            <form #doctorPost = "ngForm" (ngSubmit) = "onUpdate(doctorPost.value)">  
+            
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Name:</label>
+                    <div class="col-sm-9">    
+                        <input [readonly]="!editable" id="name" type="text" [ngClass]="selectClass()" name="name" [(ngModel)]="name">
+                    </div>
+                </div>
         
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" class="form-control" name="name" [(ngModel)]="name" readonly>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                    <div class="col-sm-9">
+                        <input [readonly]="!editable" id="email" type="email" [ngClass]="selectClass()" name="email" [(ngModel)]="email">
+                    </div>
+                </div>
+        
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 col-form-label">Password:</label>
+                    <div class="col-sm-9">
+                        <input [readonly]="!editable" type="password" id="password" [ngClass]="selectClass()" name="password" [(ngModel)]="password">
+                    </div>
+                </div>
+                <button *ngIf="editable" type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
-
-        <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" class="form-control" name="email" [(ngModel)]="email" readonly>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="form-control" name="password" [(ngModel)]="password" readonly>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
+    </div>
 </div>
+

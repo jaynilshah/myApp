@@ -13,7 +13,7 @@ export class PatientListComponent implements OnInit {
   public sname : string;
   public semail : string;
   public sstate : any;
-  public scategory : any; //Set the values as all , active, deveased, recovered
+  public scategory : any; //Set the values as all , active, deceased, recovered
   public patients_list : patientDetail[];
   public states_list : any;
   public categories : any;
@@ -21,13 +21,14 @@ export class PatientListComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem("access_token");
     this.categories = [
-      {id : 1, value : "any"},
-      {id : 2, value : "active"},
-      {id : 3, value : "recovered"},
-      {id : 4, value : "deceased"},
+      {id : 1, value : "Any"},
+      {id : 2, value : "Active"},
+      {id : 3, value : "Recovered"},
+      {id : 4, value : "Deceased"},
+      {id : 5, value : "Unattended"},
     ]
     this.states_list = [
-      { id:'all' , value: 'any'},
+      { id:'all' , value: 'All'},
       { id:'Andaman and Nicobar' , value: 'Andaman and Nicobar'},
       { id:'Andhra Pradesh',    value : 'Andhra Pradesh'    },
       { id:'Arunachal Pradesh', value : 'Arunachal Pradesh' },
@@ -67,6 +68,7 @@ export class PatientListComponent implements OnInit {
       { id:'West Bengal', value : 'West Bengal' }
     ];
   }
+  
   ngOnInit(): void {
     const headers = { 'x-auth': this.token ,}
     this.http.post<patientDetail[]>('http://localhost:3000/patientList',{}  , { headers }).subscribe(data => {
@@ -77,31 +79,39 @@ export class PatientListComponent implements OnInit {
   onReset() : void {
     this.sname = "";
     this.semail = "";
-    this.sstate = "any";
-    this.scategory = "all";
+    this.sstate = "Any";
+    this.scategory = "All";
     this.onSearch();
   }
+  
   public onSearch(): void{
     var search = {};
     if(this.sname && this.sname!=""){
       search['name'] = { $regex: this.sname, $options: "i" };
     }
-    if(this.scategory && this.scategory.value!="any"){
-      if(this.scategory.value=="active"){
+    if(this.scategory && this.scategory.value!="Any"){
+      if(this.scategory.value=="Active"){
         search['active'] = true;
       }
-      else if(this.scategory.value == "recovered"){
+      else if(this.scategory.value == "Recovered"){
         search['recovered'] = true;
       }
-      else if(this.scategory.value == "deceased"){
+      else if(this.scategory.value == "Deceased"){
         search['deceased'] = true;
       }
+      else if( this.scategory.value == "Unattended")
+      {
+        // Look if this works as and condition
+        search['active'] = false ;
+        search['recovered'] = false ;
+        search['deceased'] = false ;
+      }
     }
-    if(this.sstate && this.sstate.value!="any"){
+    if(this.sstate && this.sstate.value!="All"){
       search['state'] = this.sstate.value;
     }
     if(this.semail && this.semail!=""){
-      search['email'] = { $regex: this.semail, $options: "i" };;
+      search['email'] = { $regex: this.semail, $options: "i" };
     }
     const headers = { 'x-auth': this.token ,}
     this.http.post<patientDetail[]>('http://localhost:3000/patientList',{search}, { headers }).subscribe(data => {

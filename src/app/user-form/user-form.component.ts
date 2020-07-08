@@ -12,15 +12,17 @@ export class UserFormComponent implements OnInit {
 
   constructor(private http : HttpClient, private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
   public name: string ;
   public email: string ;
   public password: string ;
+  public cpassword: string ;
   public state: string ;
   public symptoms: string ;
   public error: string ;
+
+  ngOnInit(): void {
+    this.error= null ;
+  }
   
   states_list = [
     { id:'Andaman and Nicobar' , value: 'Andaman and Nicobar'},
@@ -63,10 +65,25 @@ export class UserFormComponent implements OnInit {
   ];
 
   onSubmit(data){
-    this.http.post('http://localhost:3000/users',data)
-    .subscribe(
-      result => this.router.navigate(['user-login']),
-      err => this.error = 'Could not register'
-    )
+    if( data.password != data.cpassword )
+    {
+      this.error = "Password and Confirm Password don't match!!!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else{
+        this.http.post('http://localhost:3000/users',data)
+      .subscribe(
+        result => this.router.navigate(['user-login']),
+        error => {
+          this.error = 'Could not register! User Email exists!'
+          setTimeout( function (abc) {
+            abc.error = null ;
+          } , 3000 , this)
+        }
+      )
+    }
+    
   }
 }

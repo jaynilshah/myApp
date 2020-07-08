@@ -18,12 +18,17 @@ export class DoctorDefComponent implements OnInit {
   public email : string;
   public token : string;
   public password :string;
+  public info : string ;
+  public editable : boolean ;
+
   ngOnInit(): void {
     const headers = { 'x-auth': this.token ,}
     this.http.get<any>('http://localhost:3000/doctorsme', { headers }).subscribe(data => {
         this.name = data.name;
         this.email = data.email;
     })
+    this.info = "Edit Info";
+    this.editable = false ;
   }
   logout() {
     this.auth.logoutDoctor();
@@ -32,6 +37,23 @@ export class DoctorDefComponent implements OnInit {
 
   onUpdate(data){
     console.log(data);
+  }
+
+  toggleEdit(){
+    this.editable = ( this.editable || true ) && ( !this.editable || !true ) ;
+    if( this.editable )
+      this.info = "Close"
+    else
+      this.info = "Edit Info"
+    console.log(this.editable);  
+  }
+
+  selectClass(){
+    let classes = {
+      "form-control-plaintext" : !this.editable ,
+      "form-control" : this.editable,
+    }
+    return classes;
   }
 
 }

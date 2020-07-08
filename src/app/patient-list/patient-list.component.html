@@ -1,21 +1,42 @@
-<label for="sname">Name</label>
-<input id="sname" type="text" name="sname" [(ngModel)] = "sname" (keyup) = "onSearch()">
-
-<label for="semail">Email</label>
-<input  id="semail" type="email" name="semail" [(ngModel)] = "semail" (keyup) = "onSearch()">
-<button class="btn btn-primary btn-block" (click)="onReset()">Reset</button>  
-<select [(ngModel)]="scategory" (change)= "onSearch()">
-    <option *ngFor="let c of categories" [ngValue]="c">{{c.value}}</option>
-</select>
-
-<select [(ngModel)]="sstate" (change)= "onSearch()">
-    <option *ngFor="let c of states_list" [ngValue]="c">{{c.value}}</option>
-</select>
-
-
-
 <div class="col-12 float-center">
-    <h2>Patient Lists</h2>
-    <patient-tile *ngFor="let patient of patients_list" [patient_detail]="patient" [attr.id]="patient.email">
+    <div class="card">
+        <div class="card-header">
+            <h3>Patients List</h3>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="card-body">
+            <button class="navbar-toggler mb-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-controls="collapseFilter" aria-expanded="false" aria-label="Toggle navigation">
+                <span>Filters</span><img src="../../assets/images/filter (2).svg" width="25" height="25">
+            </button>
+            <div class="collapse navbar-collapse" id="collapseFilter">
+                <div class="form-row d-flex justify-content-center w-100" id="collapseFilter">
+                    <div class="form-group col-lg-3 mr-1">
+                        Name: <input class="form-control" id="sname" type="text" name="sname" [(ngModel)] = "sname" (keyup) = "onSearch()">
+                    </div>
+                    <div class="form-group col-lg-3 mr-1">
+                        Email: <input class="form-control" id="semail" type="email" name="semail" [(ngModel)] = "semail" (keyup) = "onSearch()">
+                    </div>
+                    <div class="form-group col-lg-2 mr-1">
+                        State:
+                        <select class="form-control" [(ngModel)]="sstate" (change)= "onSearch()">
+                            <option *ngFor="let c of states_list" [ngValue]="c">{{c.value}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-2 mr-1">
+                        Status:
+                        <select class="form-control" [(ngModel)]="scategory" (change)= "onSearch()">
+                            <option *ngFor="let c of categories" [ngValue]="c">{{c.value}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-1 mr-1">
+                        <br>
+                        <button class="btn btn-outline-primary btn-block" (click)="onReset()">Reset</button>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <patient-tile *ngFor="let patient of patients_list" [patient_detail]="patient" [attr.id]="patient.email" (onSearch)="onSearch()">
     </patient-tile>
 </div>
