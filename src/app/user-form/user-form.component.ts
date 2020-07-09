@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import  {AlertService} from '../_alert';
 
 @Component({
   selector: 'user-form',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserFormComponent implements OnInit {
 
 
-  constructor(private http : HttpClient, private router: Router) { }
+  constructor(private http : HttpClient, private router: Router, private alertService : AlertService) { }
 
   public name: string ;
   public email: string ;
@@ -75,7 +76,13 @@ export class UserFormComponent implements OnInit {
     else{
         this.http.post('http://localhost:3000/users',data)
       .subscribe(
-        result => this.router.navigate(['user-login']),
+        result => {
+          this.router.navigate(['user-login'])
+          this.alertService.success('Registration Successfully!!!', {
+            autoClose: true,
+            keepAfterRouteChange: true
+          });
+        },
         error => {
           this.error = 'Could not register! User Email exists!'
           setTimeout( function (abc) {

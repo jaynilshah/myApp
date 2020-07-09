@@ -38,7 +38,7 @@ export class DoctorLoginComponent implements OnInit {
         .subscribe(
           result => {
             this.router.navigate(['doctor-def']),
-            this.alertService.success('Succesfully logged in', {
+            this.alertService.success('Succesfully logged in!!!', {
               autoClose: true,
               keepAfterRouteChange: true
             });
