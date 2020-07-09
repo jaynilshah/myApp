@@ -17,8 +17,34 @@ export class DoctorFormComponent implements OnInit {
   ngOnInit(): void {
     this.error = null ;
   }
+  
   onSubmit(data){
-    if( data.password != data.cpassword )
+    console.log(data)
+    if( data.name == null || data.name == "" ) {
+      this.error = "Name is required!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else if( data.email == null || data.email == "" ){
+      this.error = "Email is required!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else if( data.password == null || data.password == "" ){
+      this.error = "Password is required!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else if( data.cpassword == null || data.cpassword == "" ){
+      this.error = "Confirm Password is required!"
+      setTimeout( function (abc) {
+        abc.error = null ;
+      } , 3000 , this)
+    }
+    else if( data.password != data.cpassword )
     {
       this.error = "Password and Confirm Password don't match!!!"
       setTimeout( function (abc) {
